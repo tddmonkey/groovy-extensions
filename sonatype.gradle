@@ -1,0 +1,33 @@
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+version = '0.0.1-SNAPSHOT'
+
+publishing {
+	publications {
+		Publication(MavenPublication) {
+			from components.java
+			groupId 'tddmonkey.groovy-extensions'
+			artifactId 'extensions-time'
+			version project.version
+
+			artifact sourcesJar
+			artifact javadocJar
+		}
+	}
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
+}
