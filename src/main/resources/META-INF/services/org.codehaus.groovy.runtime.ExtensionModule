@@ -1,0 +1,3 @@
+moduleName=TimeExtensions
+moduleVersion=1.0
+extensionClasses=time.TimeExtension
